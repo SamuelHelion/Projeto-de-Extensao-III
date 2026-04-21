@@ -1,0 +1,209 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Container da consulta */
+.consulta-wrapper {
+  text-align: center;
+  margin-bottom: 60px;
+  background-color: #f8fafc; /* Um fundo leve para destacar a área */
+  padding: 40px;
+  border-radius: 15px;
+}
+
+.consulta-wrapper h2 {
+  font-size: 28px;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.consulta-wrapper p {
+  color: #64748b;
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+/* Container que junta Input e Botão */
+.search-box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0; /* Cola o botão no input se desejar, ou deixe 10px para respiro */
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: #94a3b8;
+}
+
+.search-input-new {
+  width: 100%;
+  padding: 15px 15px 15px 45px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px 0 0 8px; /* Arredonda só o lado esquerdo */
+  font-size: 16px;
+  outline: none;
+}
+
+.btn-buscar-azul {
+  background-color: #007bff;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 0 8px 8px 0; /* Arredonda só o lado direito */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-buscar-azul:hover {
+  background-color: #0056b3;
+}
+
+
+/* Título */
+.timeline-header {
+  text-align: left;
+  margin-bottom: 35px;
+  color: #1f2937;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+/* Grid */
+.complaints-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+/* Card */
+.complaint-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.complaint-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-top {
+  background: #007bff;
+  color: white;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.card-id {
+  background: rgba(255,255,255,0.25);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.card-date {
+  opacity: 0.95;
+}
+
+.card-content {
+  padding: 20px;
+  flex: 1;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-icon {
+  font-size: 24px;
+}
+
+.card-description {
+  font-size: 15px;
+  color: #4b5563;
+  line-height: 1.5;
+}
+
+.card-footer {
+  padding: 16px 20px;
+  background: #f8fafc;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #f1f5f9;
+}
+
+.like-button {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 30px;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.like-button:hover {
+  background: #0056b3;
+}
+
+
+.complaint-card {
+  cursor: pointer !important; /* Força o cursor de mãozinha */
+  pointer-events: auto !important; /* Garante que o clique passe pelo card */
+  user-select: none; /* Evita que o texto seja selecionado ao clicar rápido */
+}
+
+/* Garante que o conteúdo interno não bloqueie o clique do pai */
+.card-top, .card-content, .card-title, .card-description {
+  pointer-events: none; 
+}
+
+/* O botão de like precisa voltar a ter clique, senão ele para de funcionar */
+.like-button {
+  pointer-events: auto !important;
+}
+/* Responsivo */
+@media (max-width: 992px) {
+  .complaints-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .complaints-grid {
+    grid-template-columns: 1fr;
+  }
+}

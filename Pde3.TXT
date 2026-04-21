@@ -1,0 +1,49 @@
+📂 Estrutura de Diretórios: Voz Local (PdE3)
+
+PdE3/
+├── node_modules/             # Bibliotecas e dependências (Geradas pelo npm)
+├── public/                   # Arquivos estáticos globais (Favicon e Manifesto)
+├── src/                      # Código-fonte principal da aplicação
+│   ├── assets/               # Mídias locais (Imagens e ícones específicos)
+│   ├── components/           # Partes reutilizáveis da interface
+│   │   └── navbar.jsx        # Menu de navegação superior global
+│   ├── pages/                # Telas completas da aplicação (Rotas)
+│   │   ├── login.jsx         # Tela de acesso ao sistema
+│   │   ├── index.jsx         # Página Inicial (Apresentação e Cards de ação)
+│   │   ├── form.jsx          # Formulário de registro de novas ocorrências
+│   │   ├── dashboard.jsx     # Mural público com a timeline de protocolos
+│   │   └── detalhes.jsx      # Visualização detalhada de uma denúncia específica
+│   ├── styles/               # Arquivos de estilização (CSS Modular)
+│   │   ├── global.css        # Estilos base, reset e variáveis de cores
+│   │   ├── navbar.css        # Design do menu de navegação
+│   │   ├── login.css         # Layout da tela de entrada
+│   │   ├── inicio.css        # Estilos da página de apresentação
+│   │   ├── form.css          # Estilização do formulário de envio
+│   │   ├── dashboard.css     # Design do mural e barra de busca
+│   │   └── detalhes.css      # Estilo do super card de visualização
+│   ├── app.jsx               # Maestro do projeto (Gerencia rotas e estados)
+│   └── main.jsx              # Arquivo de inicialização do React no navegador
+├── index.html                # Estrutura HTML base e título da aba (Voz Local)
+├── package.json              # Manifesto do projeto e lista de dependências
+└── vite.config.js            # Configurações de performance e build do Vite
+
+===================================================================================================================\
+
+📘 Guia Técnico para Desenvolvedores e Equipe
+Para garantir que qualquer pessoa que assuma o projeto entenda o fluxo de trabalho, utilize estas definições:
+
+1. Camada de Visualização (src/pages/)
+Esta pasta contém as entidades de página. No React Router, cada arquivo aqui corresponde a uma experiência de usuário distinta. Se você precisa alterar a lógica de como um protocolo é filtrado, o lugar é aqui.
+
+2. Componentização (src/components/)
+Aqui residem os elementos que mantêm a consistência visual. A navbar.jsx é o melhor exemplo: ela é escrita uma única vez e importada nas páginas necessárias, garantindo que o menu seja idêntico em todo o sistema.
+
+3. Arquitetura de Estilo (src/styles/)
+Adotamos o CSS Modular por Página. Isso significa que o estilo da tela de detalhes.jsx não interfere no login.jsx. O arquivo global.css deve ser usado exclusivamente para definir a paleta de cores oficial (Azul #007bff) e fontes.
+
+4. Lógica de Roteamento (src/app.jsx)
+Este é o arquivo de controle. Ele utiliza a lógica de location.pathname para decidir, por exemplo, que a Navbar não deve aparecer na tela de Login, mas deve estar presente em todas as outras. É aqui que as rotas dinâmicas (como /acompanhar/:id) são declaradas.
+
+5. Ponto de Entrada Estático (index.html)
+Diferente de sites comuns, no React este arquivo raramente é alterado, exceto para configurar o SEO, o título da página e o ícone da aba (Favicon).
+

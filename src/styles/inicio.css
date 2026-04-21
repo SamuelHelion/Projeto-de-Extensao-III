@@ -1,0 +1,97 @@
+.inicio-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-section {
+  background-color: #f8f9fa;
+  padding: 55px 40px;
+  border-radius: 20px;
+  margin: 40px auto;
+  text-align: center;
+  max-width: 1000px;
+}
+
+.hero-section h1 {
+  font-size: 40px;
+  color: #007bff;
+  margin-bottom: 18px;
+}
+
+.hero-section p {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.65;
+}
+
+.section-title {
+  text-align: center;
+  color: #333;
+  margin: 50px 0 45px;
+  font-size: 27px;
+}
+
+/* Cards lado a lado - mais compactos */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto 100px;
+  padding: 0 20px;
+}
+
+.feature-card {
+  background: white;
+  padding: 35px 20px 95px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  position: relative;
+  min-height: 320px;
+}
+
+.feature-icon {
+  font-size: 48px;
+  margin-bottom: 18px;
+}
+
+.feature-card h3 {
+  font-size: 21px;
+  margin-bottom: 14px;
+}
+
+.feature-card p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.feature-btn {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #007bff;
+  color: white;
+  padding: 10px 26px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14.5px;
+}
+
+.feature-btn:hover {
+  background: #0056b3;
+}
+
+/* Efeito ao passar o mouse (Hover) */
+.feature-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Suaviza a animação */
+}
+
+.feature-card:hover {
+  transform: translateY(-10px); /* Faz o card subir 10 pixels */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15); /* Aumenta a sombra para dar profundidade */
+}

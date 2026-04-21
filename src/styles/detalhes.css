@@ -1,0 +1,131 @@
+/* src/styles/detalhes.css */
+
+.detalhe-card-container {
+  background-color: white;
+  border-radius: 18px; /* Cantos um pouco mais arredondados */
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.06); /* Sombra mais difusa */
+  overflow: hidden;
+  max-width: 900px; /* Card maior para conter as fotos */
+  margin: 0 auto 50px;
+}
+
+/* TOPO AZUL (Conforme orientação) */
+.detalhe-header {
+  background-color: #007bff; /* Azul padrão do PdE3/Menu */
+  padding: 18px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: none; /* Remove a borda antiga */
+}
+
+.detalhe-id {
+  font-weight: bold;
+  color: #007bff;
+  background: white; /* Contraste com o topo azul */
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.btn-voltar {
+  background: white; /* Botão branco no topo azul */
+  border: 1px solid #cbd5e1;
+  padding: 6px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #007bff;
+  font-weight: bold;
+  font-size: 14px;
+  transition: opacity 0.2s;
+}
+
+.btn-voltar:hover {
+  opacity: 0.9;
+}
+
+/* CONTEÚDO PRINCIPAL (Alinhado à esquerda) */
+.detalhe-content {
+  padding: 40px;
+  text-align: left;
+}
+
+.detalhe-content h1 {
+  font-size: 36px; /* Título maior */
+  color: #1e293b;
+  margin-bottom: 35px;
+  font-weight: 700;
+}
+
+.detalhe-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 25px;
+  margin-bottom: 35px;
+}
+
+.info-item strong {
+  display: block;
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.info-item p {
+  font-size: 16px;
+  color: #334155;
+  background-color: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.descricao-texto {
+  line-height: 1.7;
+}
+
+/* SEÇÃO DE FOTOS (Nova) */
+.foto-do-problema-wrapper {
+  margin-top: 40px;
+  border-top: 2px solid #f1f5f9;
+  padding-top: 30px;
+}
+
+.foto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.foto-placeholder {
+  background-color: #f1f5f9;
+  height: 200px;
+  border-radius: 8px;
+  border: 2px dashed #cbd5e1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #94a3b8;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* RODAPÉ SEM STATUS */
+.detalhe-footer {
+  margin-top: 45px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: flex-end; /* Apenas as curtidas à direita */
+}
+
+.likes-badge {
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+}
