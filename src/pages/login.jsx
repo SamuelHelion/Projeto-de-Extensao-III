@@ -2,21 +2,64 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css'; // Importando o CSS que criamos
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
   const [isCadastro, setIsCadastro] = useState(false);
   const navigate = useNavigate();
+  const { login, createAccount } = useAuth();
 
-  const handleSubmit = (e) => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulação: Navega para a home do Projeto de Extensão III
-    navigate('/inicio');
+    if (isCadastro) {
+      await createUserAccount(e);
+    } else {
+      await userLogin(e);
+    }
+  };
+
+  const userLogin = async (e) => {
+    setLoading(true);
+    setError('');
+
+    const result = await login(email, password);
+
+    setLoading(false);
+
+    if (result.success) {
+      navigate('/inicio');
+    } else {
+      setError(result.message);
+    }
+  };
+
+  const createUserAccount = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const result = await createAccount(name, email, password);
+
+    setLoading(false);
+
+    if (result.success) {
+      setIsCadastro(false);
+      await userLogin(e); // Tenta logar automaticamente após criar conta
+    } else {
+      setError(result.message);
+    }
   };
 
   return (
     <div className="main-container">
       <div className="card-duplo">
-        
+
         {/* Lado Esquerdo - Apresentação Projeto de Extensão III */}
         <div className="card-esquerdo">
           <h1 className="logo-pde3">Projeto de Extensão III📖</h1>
@@ -37,22 +80,24 @@ function Login() {
             {isCadastro && (
               <div className="input-group">
                 <label className="input-label">👤Nome:</label>
-                <input type="text" placeholder="Nome completo" className="login-input" required />
+                <input type="text" placeholder="Nome completo" className="login-input" value={name} onChange={(e) => setName(e.target.value)} required />
               </div>
             )}
-            
+
             <div className="input-group">
               <label className="input-label">📩E-mail:</label>
-              <input type="email" placeholder="seu@email.com" className="login-input" required />
+              <input type="email" placeholder="seu@email.com" className="login-input" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </div>
 
             <div className="input-group">
               <label className="input-label">🔑Senha:</label>
-              <input type="password" placeholder="********" className="login-input" required />
+              <input type="password" placeholder="********" className="login-input" value={password} onChange={(e) => setPassword(e.target.value)} required />
             </div>
 
-            <button type="submit" className="login-button">
-              {isCadastro ? 'Finalizar Cadastro' : 'Entrar no Sistema'}
+            {error && <p style={{ color: 'red', fontSize: '14px', }}>{error}</p>}
+
+            <button type="submit" className="login-button" disabled={loading}>
+              {loading ? '⏳Carregando...' : (isCadastro ? 'Finalizar Cadastro' : 'Entrar no Sistema')}
             </button>
           </form>
 
