@@ -10,7 +10,7 @@ function Navbar() {
         <Link to="/inicio" className="nav-link"> Início</Link>
         <Link to="/denunciar" className="nav-link"> Denuncie</Link>
         <Link to="/acompanhar" className="nav-link"> Acompanhe</Link>
-        <Link to="/" className="nav-link-sair">Logout➡️</Link>
+        <Link to="/" className="nav-link-sair" onClick={() => { localStorage.removeItem("token"); }}>Logout➡️</Link>
       </div>
     </nav>
   );

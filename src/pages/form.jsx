@@ -1,14 +1,19 @@
 // src/pages/form.jsx
 import { useState } from 'react';
 import '../styles/form.css';
+import { useNavigate } from 'react-router-dom';
+import { usePost } from '../context/PostContext';
 
 function Form() {
+  const navigate = useNavigate();
+  const { createPost, loading, error } = usePost();
+
   const [formData, setFormData] = useState({
-    tipo: '',
-    descricao: '',
-    localizacao: '',
-    email: '',
-    telefone: '',
+    title: '',
+    description: '',
+    address: '',
+    imageBase64: '',
+    mimeType: '',
   });
 
   const handleChange = (e) => {
@@ -18,11 +23,42 @@ function Form() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Denúncia enviada com sucesso! (Simulação)');
+    const result = await createPost(formData);
+    if (!result.success) {
+      alert(result.message);
+      return;
+    }
+    alert('Denúncia enviada com sucesso! Obrigado por contribuir para a melhoria da sua cidade! 🚀');
+    navigate('/acompanhar');
     console.log('Dados enviados:', formData);
   };
+
+  function handleFileChange(event) {
+    const file = event.target.files[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const result = reader.result;
+
+      // result exemplo:
+      // data:image/png;base64,iVBORw0KGgo...
+
+      const base64 = result.split(",")[1];
+
+      setFormData({
+        ...formData,
+        imageBase64: base64,
+        mimeType: file.type,
+      });
+    };
+
+    reader.readAsDataURL(file);
+  }
 
   return (
     <div className="form-container">
@@ -32,13 +68,13 @@ function Form() {
       </div>
 
       <form onSubmit={handleSubmit} className="form-content">
-        
+
         {/* Tipo de Problema */}
         <div className="form-group">
           <label>📋Tipo de Problema *</label>
-          <select 
-            name="tipo" 
-            value={formData.tipo} 
+          <select
+            name="title"
+            value={formData.title}
             onChange={handleChange}
             required
           >
@@ -57,8 +93,8 @@ function Form() {
         <div className="form-group">
           <label>💬Descrição do Problema *</label>
           <textarea
-            name="descricao"
-            value={formData.descricao}
+            name="description"
+            value={formData.description}
             onChange={handleChange}
             placeholder="Descreva o problema encontrado com o máximo de detalhes possível..."
             rows="5"
@@ -72,31 +108,34 @@ function Form() {
           <label>📍Localização *</label>
           <input
             type="text"
-            name="localizacao"
-            value={formData.localizacao}
+            name="address"
+            value={formData.address}
             onChange={handleChange}
             placeholder="Ex: Av. Central, 123 - Bairro Centro"
             required
           />
         </div>
-
         {/* Adicionar Foto */}
         <div className="form-group">
           <label>📂Adicionar Foto</label>
-          <div className="photo-upload">
+          <label className="photo-upload">
             <div className="upload-area">
-              <span className="upload-icon">☁️</span>
-              <p>Clique para adicionar uma foto<br />ou arraste e solte aqui</p>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                required
+              />
             </div>
-          </div>
+          </label>
         </div>
 
         {/* Botões */}
         <div className="form-buttons">
-          <button type="submit" className="btn-submit">
-            Enviar Solicitação✅
+          <button type="submit" className="btn-submit" disabled={loading}>
+            {loading ? '⏳Enviando...' : 'Enviar Solicitação✅'}
           </button>
-          <button type="button" className="btn-cancel">
+          <button type="button" className="btn-cancel" onClick={() => navigate(-1)}>
             Cancelar🚫
           </button>
         </div>

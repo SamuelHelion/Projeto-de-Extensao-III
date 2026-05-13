@@ -66,15 +66,10 @@ export function AuthProvider({ children }) {
         }
     }
 
-    function logout() {
-        localStorage.removeItem('token');
-    }
-
     return (
         <AuthContext.Provider
             value={{
                 login,
-                logout,
                 createAccount,
                 loading,
             }}

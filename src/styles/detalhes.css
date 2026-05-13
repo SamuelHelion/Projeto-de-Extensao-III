@@ -101,7 +101,7 @@
 
 .foto-placeholder {
   background-color: #f1f5f9;
-  height: 200px;
+  height: 450px;
   border-radius: 8px;
   border: 2px dashed #cbd5e1;
   display: flex;
@@ -110,6 +110,13 @@
   color: #94a3b8;
   font-size: 14px;
   text-align: center;
+}
+
+.foto-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* RODAPÉ SEM STATUS */
