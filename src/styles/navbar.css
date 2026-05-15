@@ -3,10 +3,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px; /* Reduzi de 40px para ganhar espaço */
+  padding: 0 24px;
   height: 70px;
   background-color: #007bff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   width: 100%;
   position: sticky;
   top: 0;
@@ -15,13 +15,16 @@
 
 .navbar-logo {
   color: white;
-  font-size: 20px; /* Reduzi levemente */
+  font-size: 18px;
   font-weight: bold;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
+/* Links desktop */
 .navbar-links {
   display: flex;
-  gap: 15px; /* Reduzi o gap */
+  gap: 20px;
   align-items: center;
 }
 
@@ -30,10 +33,129 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  padding: 8px 4px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
 }
 
-@media (max-width: 480px) {
-  .navbar { padding: 0 10px; }
-  .nav-link-sair { padding-left: 10px; }
-  .navbar-logo { font-size: 18px; }
+.nav-link:hover {
+  border-bottom-color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-link-sair {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  background-color: rgba(255, 255, 255, 0.15);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  min-height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link-sair:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Botão hambúrguer — oculto no desktop */
+.navbar-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  min-height: unset;
+  border-radius: 6px;
+  transition: background-color 0.2s;
+}
+
+.navbar-hamburger:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.hamburger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* Animação X quando aberto */
+.navbar-hamburger.open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.navbar-hamburger.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.navbar-hamburger.open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 16px;
+    position: relative; /* Para o menu dropdown se posicionar corretamente */
+  }
+
+  .navbar-logo {
+    font-size: 15px;
+  }
+
+  /* Exibe hambúrguer */
+  .navbar-hamburger {
+    display: flex;
+  }
+
+  /* Menu fechado por padrão */
+  .navbar-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #0069d9;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 8px 0 12px;
+    z-index: 999;
+  }
+
+  /* Menu aberto */
+  .navbar-links.open {
+    display: flex;
+  }
+
+  .nav-link {
+    padding: 14px 24px;
+    border-bottom: none;
+    border-left: 3px solid transparent;
+    font-size: 15px;
+    width: 100%;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+
+  .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-left-color: white;
+  }
+
+  .nav-link-sair {
+    margin: 8px 24px 0;
+    border-radius: 8px;
+    justify-content: center;
+    font-size: 15px;
+  }
 }

@@ -1,21 +1,210 @@
 /* src/styles/form.css */
 .form-container {
-  max-width: 800px;
+  max-width: 760px;
   width: 95%;
-  margin: 20px auto;
+  margin: 28px auto 60px;
 }
 
+/* ─── Header ─── */
+.form-header {
+  text-align: center;
+  margin-bottom: 28px;
+  padding: 0 8px;
+}
+
+.form-header h1 {
+  font-size: clamp(22px, 4vw, 30px);
+  font-weight: 800;
+  color: #1a1a2e;
+  margin-bottom: 10px;
+}
+
+.form-header p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ─── Card do formulário ─── */
+.form-content {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* ─── Grupos de campos ─── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-group select,
+.form-group input[type="text"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  background-color: white;
+  color: #1a1a2e;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+.form-group select:focus,
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.12);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-group small {
+  font-size: 12px;
+  color: #999;
+}
+
+/* ─── Upload de foto ─── */
+.photo-upload {
+  display: block;
+  cursor: pointer;
+}
+
+.upload-area {
+  border: 2px dashed #c5d8f0;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  background-color: #f5f9ff;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.upload-area:hover {
+  border-color: #007bff;
+  background-color: #eef4ff;
+}
+
+.upload-area input[type="file"] {
+  width: 100%;
+  font-size: 14px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* ─── Botões ─── */
 .form-buttons {
   display: flex;
-  gap: 10px;
+  gap: 12px;
+  padding-top: 4px;
 }
 
-@media (max-width: 600px) {
-  .form-buttons {
-    flex-direction: column; /* Botões um em cima do outro */
-  }
+.btn-submit {
+  flex: 1;
+  padding: 13px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 48px;
+}
+
+.btn-submit:hover:not(:disabled) {
+  background-color: #0069d9;
+}
+
+.btn-submit:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-cancel {
+  padding: 13px 20px;
+  background-color: #f0f2f5;
+  color: #555;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  min-height: 48px;
+  white-space: nowrap;
+}
+
+.btn-cancel:hover {
+  background-color: #e2e6ea;
+}
+
+.btn-cancel:active {
+  transform: scale(0.98);
+}
+
+/* ─── Tablet ─── */
+@media (max-width: 768px) {
   .form-content {
-    padding: 20px;
+    padding: 28px 24px;
   }
-  .form-header h1 { font-size: 22px; }
+}
+
+/* ─── Mobile ─── */
+@media (max-width: 600px) {
+  .form-container {
+    width: 100%;
+    margin: 16px auto 40px;
+  }
+
+  .form-content {
+    padding: 22px 16px;
+    border-radius: 12px;
+    gap: 18px;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-cancel {
+    width: 100%;
+  }
+
+  .form-header {
+    margin-bottom: 18px;
+  }
 }
