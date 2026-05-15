@@ -1,12 +1,11 @@
 /* src/styles/login.css */
-
 .main-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #f0f2f5;
-  font-family: sans-serif;
+  padding: 20px;
 }
 
 .card-duplo {
@@ -14,12 +13,25 @@
   background-color: white;
   border-radius: 15px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-  width: 900px;
-  height: 550px;
+  width: 100%;
+  max-width: 900px;
+  min-height: 550px;
   overflow: hidden;
 }
 
-/* Lado Esquerdo */
+/* Responsivo para o Card de Login */
+@media (max-width: 768px) {
+  .card-duplo {
+    flex-direction: column;
+    height: auto;
+  }
+  .card-esquerdo {
+    padding: 30px !important;
+    text-align: center;
+  }
+  .ilustracao-simples { display: none; } /* Remove ícone no mobile para poupar espaço */
+}
+
 .card-esquerdo {
   flex: 1;
   background-color: #007bff;
@@ -30,88 +42,17 @@
   justify-content: center;
 }
 
-.logo-pde3 {
-  font-size: 28px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.titulo-esquerdo {
-  font-size: 42px;
-  margin: 0 0 20px 0;
-}
-
-.texto-esquerdo {
-  font-size: 18px;
-  line-height: 1.6;
-  opacity: 0.9;
-}
-
-.ilustracao-simples {
-  font-size: 100px;
-  text-align: center;
-  margin-top: 40px;
-}
-
-/* Lado Direito */
-.card-direito {
+.card- direito {
   flex: 1;
-  padding: 50px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.subtitulo {
-  color: #888;
-  margin-bottom: 30px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #444;
-}
-
 .login-input {
+  width: 100%;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.login-button {
-  padding: 14px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 16px;
-  transition: background 0.3s;
-}
-
-.login-button:hover {
-  background-color: #0056b3;
-}
-
-.toggle-btn {
-  background: none;
-  border: none;
-  color: #007bff;
-  margin-top: 20px;
-  cursor: pointer;
-  text-decoration: underline;
 }
